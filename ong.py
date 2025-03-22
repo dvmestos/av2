@@ -1,11 +1,10 @@
 import discord
 import random
 import os
-import asyncio
 
 from discord.ext import commands
 
-TOKEN_FILE = "nekot.txt"
+TOKEN_FILE = "neket.txt"
 
 def get_token():
     if os.path.exists(TOKEN_FILE):
@@ -20,14 +19,18 @@ def generate_links(amount):
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     return [f"https://prnt.sc/{''.join(random.choices(chars, k=6))}" for _ in range(amount)]
 
-bot = commands.Bot(command_prefix=["+", "-", "$"], intents=discord.Intents.default())
+intents = discord.Intents.default()
+intents.messages = True
+intents.guilds = True
+
+bot = commands.Bot(command_prefix=["+", "-", "$"], intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"u logged in as {bot.user} nigga")
+    print(f"Logged in as {bot.user}")
 
 @bot.command()
-async def gen(ctx):
+async def links(ctx):
     await ctx.send("How much links u want?")
 
     def check(m):
