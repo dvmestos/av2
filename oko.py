@@ -38,7 +38,7 @@ async def on_ready():
 
 @bot.event
 async def on_command_error(ctx, error):
-    await ctx.send("That command doesn't exist! Use `.help` to view all commands.")
+    await ctx.send("That command doesn't exist! Use `.cmds` to view all commands.")
 
 @bot.command()
 async def stock(ctx):
@@ -88,11 +88,11 @@ async def with_(ctx, amount: str):
         await ctx.send("Error processing withdrawal.")
 
 @bot.command()
-async def help(ctx):
+async def cmds(ctx):
     await ctx.send(f"{ctx.author} just used .help!\n```\n"
                    ".stock - Show available stock\n"
                    ".with <amount> - Withdraw an account\n"
                    ".restock <mail:pass | (number)vp> - Add accounts to stock\n"
-                   ".help - Display commands\n```")
+                   ".cmds - Display commands\n```")
 
 bot.run(TOKEN)
